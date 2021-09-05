@@ -19,16 +19,22 @@ public class PawnPromotionMove extends Move {
     public PawnPromotionMove(Point from, Point to, Piece fromPiece, Piece toPiece) {
         super(from, to, fromPiece, toPiece);
     }
+    
+    @Override
+    /**
+     * Returns a deep copy of this move
+     */
+    public Move copy() {
+        return new PawnPromotionMove(this);
+    }
 
     @Override
     /**
      * Executes this move for the specified game
      */
     public void execute(Game game) {
-        Player activePlayer = game.getActivePlayer();
-
         // For now, just default to a new queen to avoid a dialog
-        this.fromPiece = new Queen(activePlayer.getColor(), this.from);
+        this.fromPiece = new Queen(this.fromPiece.getColor(), this.from);
         super.execute(game);
     }
 
@@ -37,9 +43,7 @@ public class PawnPromotionMove extends Move {
      * Undo this move for the specified game
      */
     public void undo(Game game) {
-        Player activePlayer = game.getActivePlayer();
-
-        this.fromPiece = new Pawn(activePlayer.getColor(), from);
+        this.fromPiece = new Pawn(this.fromPiece.getColor(), from);
         super.undo(game);
     }
 
@@ -49,5 +53,12 @@ public class PawnPromotionMove extends Move {
      */
     public String toString() {
         return super.toString() + " (pawn promotion)";
+    }
+    
+    /**
+     * PawnPromotionMove copy constructor
+     */
+    private PawnPromotionMove(PawnPromotionMove other) {
+        this(other.from, other.to, other.fromPiece, other.toPiece);
     }
 }
