@@ -2,8 +2,8 @@ package chess.gui;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public class GuiPiece {
     private static final Map<String, ImageIcon> pieceIconsScaled = new HashMap<String, ImageIcon>();
 
     /**
-     * Loads piece icons from the assets folder
+     * Loads piece icons from the resources folder
      */
     public static void loadPieceIcons() {
         String[] colors = { "w", "b" };
@@ -33,7 +33,8 @@ public class GuiPiece {
                 try {
                     // "wK.png" -> white king
                     String name = color + id.getAbrvName();
-                    BufferedImage icon = ImageIO.read(new File("assets/" + name + ".png"));
+                    URL url = ClassLoader.getSystemClassLoader().getResource("resources/" + name + ".png");
+                    BufferedImage icon = ImageIO.read(url);
                     pieceIcons.put(name, icon);
                 } catch (IOException e) {
                     e.printStackTrace();

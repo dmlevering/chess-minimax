@@ -3,7 +3,6 @@ package chess.model.move;
 import java.awt.Point;
 
 import chess.model.Game;
-import chess.model.Player;
 import chess.model.piece.Pawn;
 import chess.model.piece.Piece;
 import chess.model.piece.Queen;

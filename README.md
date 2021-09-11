@@ -1,3 +1,3 @@
 # chess-minimax
 
-![Alt text](assets/chess.png?raw=true "chess")
+![Alt text](src/resources/chess.png?raw=true "chess")
